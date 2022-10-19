@@ -1,0 +1,12 @@
+Windows Registry Editor Version 5.00
+ 
+[HKEY_CLASSES_ROOT\customproto]
+"URL Protocol"=""
+@="URL:Customproto Protocol"
+ 
+[HKEY_CLASSES_ROOT\customproto\shell]
+ 
+[HKEY_CLASSES_ROOT\customproto\shell\open]
+ 
+[HKEY_CLASSES_ROOT\customproto\shell\open\command]
+@="\"C:\\customproto.bat\" \"%1\""

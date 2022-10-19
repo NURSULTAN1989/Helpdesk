@@ -1,0 +1,34 @@
+Создаем протокол.
+Для этого создаем файл с любым именем, но с расширением .reg и со следующим содержимым:
+
+
+
+Windows Registry Editor Version 5.00
+ 
+[HKEY_CLASSES_ROOT\customproto]
+"URL Protocol"=""
+@="URL:Customproto Protocol"
+ 
+[HKEY_CLASSES_ROOT\customproto\shell]
+ 
+[HKEY_CLASSES_ROOT\customproto\shell\open]
+ 
+[HKEY_CLASSES_ROOT\customproto\shell\open\command]
+@="\"C:\\customproto.bat\" \"%1\""
+customproto - название только что созданного протокола (меняем на свое если необходимо).
+
+
+Запускаем файл, соглашаемся со всеми диалоговыми окнами! Затем удаляем файл, он больше не понадобится
+
+2. Создаем батник.
+В корне диска C:/ создаем файл с именем customproto.bat и следующим содержимым:
+
+@echo off
+set "path=%~1"
+setlocal enabledelayedexpansion
+set path=%path:customproto://=%
+set path=%path:"=%
+set path=%path:/=\%
+set path=!path:%%20= !
+set path=!path:%%5C=\!
+C:\Windows\explorer.exe "%path%"
